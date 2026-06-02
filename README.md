@@ -2,38 +2,46 @@
 
 A command-line Personal Assistant developed in Python.
 
-The application allows users to manage contacts and notes, store data between sessions, and search information quickly through a convenient command-line interface.
+The application allows users to manage contacts and notes, store data between sessions, and quickly search information through a convenient command-line interface.
+
+---
 
 ## Features
 
-### Contact Management
+### 📇 Contact Management
 
 * Add contacts
-* Store phone numbers
+* Add full contacts with all information at once
 * International phone number validation
 * Add email addresses
 * Add physical addresses
 * Add birthdays
-* Edit contact information
+* Edit phone numbers
 * Delete contacts
 * Search contacts by name, phone number, email, or address
 * Display upcoming birthdays within a specified number of days
 
-### Notes Management
+### 📝 Notes Management
 
 * Create notes
 * Edit notes
 * Delete notes
 * Display all notes
 * Search notes by title
-* Add tags to notes
-* Search notes by tags
 * Clear all notes
 
-### Data Persistence
+### 🏷️ Tags
 
-* Automatic data saving using pickle
-* Contacts and notes are restored after restarting the application
+* Add tags to notes
+* Search notes by tags
+* Prevent duplicate tags
+
+### 💾 Data Persistence
+
+* Automatic saving using Pickle
+* Contacts and notes remain available after application restart
+
+---
 
 ## Installation
 
@@ -57,7 +65,9 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-## Run Application
+---
+
+## Running the Application
 
 ```bash
 python -m assistant.main
@@ -69,53 +79,56 @@ or
 python3 -m assistant.main
 ```
 
+---
+
 ## Available Commands
 
-### Contacts
+### 📇 Contacts
 
 ```text
-add [name] [+countrycode_number]
-change [name] [old_phone] [new_phone]
-phone [name]
+add-full "name" phone email "address" birthday
+add "name" phone
+change "name" old_phone new_phone
+phone "name"
 all
-find [text]
-delete [name]
+find text
+delete "name"
 ```
 
-### Birthdays
+### 🎂 Birthdays
 
 ```text
-add-birthday [name] [DD.MM.YYYY]
-show-birthday [name]
-birthdays [days]
+add-birthday "name" DD.MM.YYYY
+show-birthday "name"
+birthdays days
 ```
 
-### Additional Contact Information
+### 📧 Additional Information
 
 ```text
-add-email [name] [email]
-add-address [name] [address]
+add-email "name" email
+add-address "name" "address"
 ```
 
-### Notes
+### 📝 Notes
 
 ```text
-add-note [title] [content]
+add-note "title" content
 show-notes
-find-note [title]
-edit-note [title] [new_content]
-delete-note [title]
+find-note "title"
+edit-note "title" new_content
+delete-note "title"
 clear-notes
 ```
 
-### Tags
+### 🏷️ Tags
 
 ```text
-add-tag [title] [tag]
-find-tag [tag]
+add-tag "title" tag
+find-tag tag
 ```
 
-### Other
+### ⚙️ Other
 
 ```text
 hello
@@ -124,22 +137,49 @@ close
 exit
 ```
 
-## Example Usage
+---
+
+## Examples
+
+Create a contact:
 
 ```text
-add Maryna +380999076997
-add-email Maryna maryna@gmail.com
-add-address Maryna Valencia Spain
-add-birthday Maryna 26.10.1984
+add "Maryna Slavioglo" +380999076997
+```
 
-add-note Python Learn decorators
-add-tag Python programming
+Create a contact with full information:
 
-find-tag programming
+```text
+add-full "Maryna Slavioglo" +380999076997 maryna@gmail.com "Valencia Spain" 26.10.1984
+```
+
+Create a note:
+
+```text
+add-note "Shopping List" Buy milk bread eggs and cheese
+```
+
+Add a tag:
+
+```text
+add-tag "Shopping List" food
+```
+
+Search notes by tag:
+
+```text
+find-tag food
+```
+
+Show birthdays for the next 30 days:
+
+```text
 birthdays 30
 ```
 
-## Technologies
+---
+
+## Technologies Used
 
 * Python 3
 * Object-Oriented Programming (OOP)
@@ -147,6 +187,14 @@ birthdays 30
 * Git
 * GitHub
 
+---
+
 ## Author
 
-Maryna Slavioglo
+**Maryna Slavioglo**
+
+GoIT Python Programming Final Project
+
+### Acknowledgements
+
+Special thanks to ChatGPT for assistance with project planning, debugging, feature design, testing ideas, and documentation improvements during development. 
