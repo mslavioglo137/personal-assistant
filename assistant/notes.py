@@ -103,19 +103,19 @@ class NotesBook:
 
         return True
     
-    # Знайти всі нотатки за тегом
-    def find_by_tag(self, tag):
+# Знайти всі нотатки за тегом
+def find_by_tag(self, tag):
 
-        found_notes = []
+    found_notes = []
 
-        for note in self.notes:
+    for note in self.notes:
 
-            for note_tag in note.tags:
+        for note_tag in note.tags:
 
-                if tag.lower() == note_tag.lower():
+            if tag.lower() == note_tag.lower():
 
-                    found_notes.append(note)
+                found_notes.append(note)
 
-            break
+                break
 
-        return found_notes
+    return found_notes

@@ -1,139 +1,60 @@
 # Personal Assistant
 
-Command-line personal assistant for managing contacts and notes.
+A command-line Personal Assistant developed in Python.
+
+The application allows users to manage contacts and notes, store data between sessions, and search information quickly through a convenient command-line interface.
 
 ## Features
 
 ### Contact Management
 
-* Add new contacts
-* Store multiple phone numbers for one contact
-* Add and manage birthdays
+* Add contacts
+* Store phone numbers
+* International phone number validation
 * Add email addresses
 * Add physical addresses
-* Edit phone numbers
+* Add birthdays
+* Edit contact information
 * Delete contacts
-* Search contacts by:
+* Search contacts by name, phone number, email, or address
+* Display upcoming birthdays within a specified number of days
 
-  * name
-  * phone number
-  * email
-  * address
-* View upcoming birthdays
+### Notes Management
 
-### Data Validation
+* Create notes
+* Edit notes
+* Delete notes
+* Display all notes
+* Search notes by title
+* Add tags to notes
+* Search notes by tags
+* Clear all notes
 
-* International phone number support
-* Phone numbers must contain from 10 to 15 digits
-* Email format validation
-* Birthday validation (`DD.MM.YYYY`)
+### Data Persistence
 
-### Data Storage
-
-* Automatic saving of contacts using `pickle`
-* Automatic loading of saved data when the application starts
-* Data persists between sessions
-
-## Project Structure
-
-```text
-personal-assistant/
-│
-├── assistant/
-│   ├── __init__.py
-│   ├── address_book.py
-│   ├── decorators.py
-│   ├── handlers.py
-│   ├── main.py
-│   ├── notes.py
-│   └── storage.py
-│
-├── README.md
-├── requirements.txt
-├── setup.py
-└── .gitignore
-```
-
-## Available Commands
-
-### General
-
-```text
-hello
-close
-exit
-```
-
-### Contacts
-
-```text
-add [name] [phone]
-
-change [name] [old_phone] [new_phone]
-
-phone [name]
-
-all
-
-find-contact [search_text]
-
-delete-contact [name]
-```
-
-### Birthday Management
-
-```text
-add-birthday [name] [DD.MM.YYYY]
-
-show-birthday [name]
-
-birthdays
-```
-
-### Email Management
-
-```text
-add-email [name] [email]
-```
-
-### Address Management
-
-```text
-add-address [name] [address]
-```
+* Automatic data saving using pickle
+* Contacts and notes are restored after restarting the application
 
 ## Installation
 
-Clone repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/mslavioglo137/personal-assistant.git
-```
-
-Go to project directory:
-
-```bash
 cd personal-assistant
 ```
 
-Create virtual environment:
+Create and activate a virtual environment:
 
 ```bash
 python3 -m venv .venv
-```
-
-Activate virtual environment:
-
-macOS / Linux
-
-```bash
 source .venv/bin/activate
 ```
 
-Windows
+Install dependencies:
 
 ```bash
-.venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
 ## Run Application
@@ -142,41 +63,90 @@ Windows
 python -m assistant.main
 ```
 
+or
+
+```bash
+python3 -m assistant.main
+```
+
+## Available Commands
+
+### Contacts
+
+```text
+add [name] [+countrycode_number]
+change [name] [old_phone] [new_phone]
+phone [name]
+all
+find [text]
+delete [name]
+```
+
+### Birthdays
+
+```text
+add-birthday [name] [DD.MM.YYYY]
+show-birthday [name]
+birthdays [days]
+```
+
+### Additional Contact Information
+
+```text
+add-email [name] [email]
+add-address [name] [address]
+```
+
+### Notes
+
+```text
+add-note [title] [content]
+show-notes
+find-note [title]
+edit-note [title] [new_content]
+delete-note [title]
+clear-notes
+```
+
+### Tags
+
+```text
+add-tag [title] [tag]
+find-tag [tag]
+```
+
+### Other
+
+```text
+hello
+help
+close
+exit
+```
+
 ## Example Usage
 
 ```text
 add Maryna +380999076997
-
 add-email Maryna maryna@gmail.com
-
 add-address Maryna Valencia Spain
-
 add-birthday Maryna 26.10.1984
 
-find-contact Valencia
+add-note Python Learn decorators
+add-tag Python programming
 
-all
+find-tag programming
+birthdays 30
 ```
 
-## Current Development Status
+## Technologies
 
-Completed:
+* Python 3
+* Object-Oriented Programming (OOP)
+* Pickle Serialization
+* Git
+* GitHub
 
-* Project architecture
-* Address Book
-* Phone validation
-* International phone support
-* Email validation
-* Birthday management
-* Contact search
-* Persistent data storage
+## Author
 
-Planned:
-
-* Notes management
-* Tags support
-* Search notes by tags
-* Package installation support
-
-```
-```
+Maryna Slavioglo

@@ -339,7 +339,13 @@ def find_tag(args, notes_book: NotesBook):
 
     tag = args[0]
 
-    found_notes = notes_book.find_by_tag(tag)
+    found_notes = [
+        note for note in notes_book.notes
+        if any(
+            tag.lower() == note_tag.lower()
+            for note_tag in note.tags
+        )
+    ]
 
     if not found_notes:
 
