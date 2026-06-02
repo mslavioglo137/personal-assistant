@@ -184,7 +184,12 @@ def show_birthday(args, book: AddressBook):
 @input_error
 def birthdays(args, book: AddressBook):
 
-    days = int(args[0])
+    try:
+        days = int(args[0])
+
+    except ValueError:
+
+        return "Enter number of days."
 
     upcoming_birthdays = book.get_upcoming_birthdays(days)
 
