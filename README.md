@@ -193,7 +193,7 @@ birthdays 30
 
 **Maryna Slavioglo**
 
-GoIT Python Programming Final Project
+Python Programming Final Project
 
 ### Acknowledgements
 
