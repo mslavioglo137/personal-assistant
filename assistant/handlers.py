@@ -4,6 +4,11 @@ from assistant.address_book import (
     Phone
 )
 
+from assistant.notes import (
+    Note,
+    NotesBook
+)
+
 from assistant.decorators import input_error
 
 # Розбір введеної користувачем команди
@@ -221,3 +226,63 @@ def add_address(args, book: AddressBook):
     record.add_address(" ".join(address))
 
     return "Address added."
+
+# Додавання нової нотатки
+@input_error
+def add_note(args, notes_book: NotesBook):
+
+    # Перший аргумент — заголовок нотатки
+    title = args[0]
+
+    # Усе інше — текст нотатки
+    content = " ".join(args[1:])
+
+    note = Note(title, content)
+
+    notes_book.add_note(note)
+
+    return "Note added."
+
+
+# Показати всі нотатки
+@input_error
+def show_notes(notes_book: NotesBook):
+
+    if not notes_book.notes:
+
+        return "No notes saved."
+
+    return "\n\n".join(
+        str(note)
+        for note in notes_book.notes
+    )
+
+
+# Пошук нотатки за заголовком
+@input_error
+def find_note(args, notes_book: NotesBook):
+
+    title = args[0]
+
+    note = notes_book.find_note(title)
+
+    if note is None:
+
+        return "Note not found."
+
+    return str(note)
+
+
+# Видалення нотатки за заголовком
+@input_error
+def delete_note(args, notes_book: NotesBook):
+
+    title = args[0]
+
+    deleted = notes_book.delete_note(title)
+
+    if not deleted:
+
+        return "Note not found."
+
+    return "Note deleted."

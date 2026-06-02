@@ -1,14 +1,20 @@
 from assistant.address_book import AddressBook
 
+from assistant.notes import NotesBook
+
 from assistant.storage import (
     save_data,
     load_data
 )
 
 from assistant.handlers import (
+    add_note,
+    delete_note,
+    find_note,
     parse_input,
     add_contact,
     change_contact,
+    show_notes,
     show_phone,
     show_all,
     add_birthday,
@@ -28,22 +34,37 @@ def main():
         AddressBook
     )
 
+    notes_book = load_data(
+        "notesbook.pkl",
+        NotesBook
+    )
+
     print("Welcome to Personal Assistant!")
 
     print("""
 Available commands:
 hello
+
 add [name] [+countrycode_number]
 change [name] [old_phone] [new_phone]
 phone [name]
 all
+
 add-birthday [name] [DD.MM.YYYY]
 show-birthday [name]
 birthdays
+
 add-email [name] [email]
 add-address [name] [address]
+
 find [text]
 delete [name]
+
+add-note [title] [content]
+show-notes
+find-note [title]
+delete-note [title]
+
 close or exit
 """)
 
@@ -62,6 +83,11 @@ close or exit
             save_data(
                 book,
                 "addressbook.pkl"
+            )
+
+            save_data(
+                notes_book,
+                "notesbook.pkl"
             )
 
             print("Good bye!")
@@ -115,6 +141,22 @@ close or exit
         elif command == "delete":
 
             print(delete_contact(args, book))
+
+        elif command == "add-note":
+
+            print(add_note(args, notes_book))
+
+        elif command == "show-notes":
+
+            print(show_notes(notes_book))
+
+        elif command == "find-note":
+
+            print(find_note(args, notes_book))
+
+        elif command == "delete-note":
+
+            print(delete_note(args, notes_book))
 
         else:
 
