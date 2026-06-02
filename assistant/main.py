@@ -1,5 +1,4 @@
 from assistant.address_book import AddressBook
-
 from assistant.notes import NotesBook
 
 from assistant.storage import (
@@ -8,14 +7,9 @@ from assistant.storage import (
 )
 
 from assistant.handlers import (
-    add_note,
-    delete_note,
-    find_note,
     parse_input,
     add_contact,
     change_contact,
-    show_notes,
-    edit_note,
     show_phone,
     show_all,
     add_birthday,
@@ -24,8 +18,66 @@ from assistant.handlers import (
     add_email,
     add_address,
     find_contact,
-    delete_contact
+    delete_contact,
+    add_note,
+    show_notes,
+    find_note,
+    delete_note,
+    edit_note,
+    add_tag,
+    find_tag
 )
+
+
+def show_menu():
+
+    print("""
+==================================================
+               PERSONAL ASSISTANT
+==================================================
+
+📇 CONTACTS
+
+  add [name] [+countrycode_number]
+  change [name] [old_phone] [new_phone]
+  phone [name]
+  all
+  find [text]
+  delete [name]
+
+🎂 BIRTHDAYS
+
+  add-birthday [name] [DD.MM.YYYY]
+  show-birthday [name]
+  birthdays [days]
+
+📧 EXTRA INFO
+
+  add-email [name] [email]
+  add-address [name] [address]
+
+📝 NOTES
+
+  add-note [title] [content]
+  show-notes
+  find-note [title]
+  edit-note [title] [new_content]
+  delete-note [title]
+
+🏷️ TAGS
+
+  add-tag [title] [tag]
+  find-tag [tag]
+
+⚙️ OTHER
+
+  hello
+  help
+  close
+  exit
+
+==================================================
+""")
 
 
 def main():
@@ -40,34 +92,10 @@ def main():
         NotesBook
     )
 
-    print("Welcome to Personal Assistant!")
+    print("\nWelcome to Personal Assistant!")
+    print("Type 'help' to display the command menu.\n")
 
-    print("""
-Available commands:
-hello
-
-add [name] [+countrycode_number]
-change [name] [old_phone] [new_phone]
-phone [name]
-all
-
-add-birthday [name] [DD.MM.YYYY]
-show-birthday [name]
-birthdays [days]
-
-add-email [name] [email]
-add-address [name] [address]
-
-find [text]
-delete [name]
-
-add-note [title] [content]
-show-notes
-find-note [title]
-delete-note [title]
-edit-note [title] [new_content]
-close or exit
-""")
+    show_menu()
 
     while True:
 
@@ -98,6 +126,10 @@ close or exit
         elif command == "hello":
 
             print("How can I help you?")
+
+        elif command == "help":
+
+            show_menu()
 
         elif command == "add":
 
@@ -163,9 +195,18 @@ close or exit
 
             print(edit_note(args, notes_book))
 
+        elif command == "add-tag":
+
+            print(add_tag(args, notes_book))
+
+        elif command == "find-tag":
+
+            print(find_tag(args, notes_book))
+
         else:
 
             print("Invalid command.")
+            print("Type 'help' to see available commands.")
 
 
 if __name__ == "__main__":

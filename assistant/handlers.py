@@ -313,3 +313,39 @@ def edit_note(args, notes_book: NotesBook):
         return "Note not found."
 
     return "Note updated."
+
+# Додавання тегу до нотатки
+@input_error
+def add_tag(args, notes_book: NotesBook):
+
+    title = args[0]
+
+    tag = args[1]
+
+    updated = notes_book.add_tag(
+        title,
+        tag
+    )
+
+    if not updated:
+
+        return "Note not found."
+
+    return "Tag added."
+
+# Пошук нотаток за тегом
+@input_error
+def find_tag(args, notes_book: NotesBook):
+
+    tag = args[0]
+
+    found_notes = notes_book.find_by_tag(tag)
+
+    if not found_notes:
+
+        return "No notes found with this tag."
+
+    return "\n\n".join(
+        str(note)
+        for note in found_notes
+    )
