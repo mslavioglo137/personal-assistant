@@ -231,10 +231,8 @@ def add_address(args, book: AddressBook):
 @input_error
 def add_note(args, notes_book: NotesBook):
 
-    # Перший аргумент — заголовок нотатки
     title = args[0]
 
-    # Усе інше — текст нотатки
     content = " ".join(args[1:])
 
     note = Note(title, content)
@@ -286,3 +284,24 @@ def delete_note(args, notes_book: NotesBook):
         return "Note not found."
 
     return "Note deleted."
+
+# Редагування нотатки
+@input_error
+def edit_note(args, notes_book: NotesBook):
+
+    # Перший аргумент — заголовок нотатки
+    title = args[0]
+
+    # Усе інше — новий текст
+    new_content = " ".join(args[1:])
+
+    updated = notes_book.edit_note(
+        title,
+        new_content
+    )
+
+    if not updated:
+
+        return "Note not found."
+
+    return "Note updated."

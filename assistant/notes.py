@@ -22,36 +22,35 @@ class Note:
 
 # Клас для зберігання колекції нотаток
 class NotesBook:
-
     def __init__(self):
-
+        # список нотаток
         self.notes = []
 
-    # Додати нотатку
+    # Додати нову нотатку
     def add_note(self, note):
-
+        if self.find_note(note.title):
+            raise ValueError("Note with this title already exists.")
         self.notes.append(note)
 
     # Знайти нотатку за заголовком
     def find_note(self, title):
-
         for note in self.notes:
-
             if note.title.lower() == title.lower():
-
                 return note
-
         return None
+
+    # Редагування тексту нотатки
+    def edit_note(self, title, new_content):
+        note = self.find_note(title)
+        if note is None:
+            return False
+        note.content = new_content
+        return True
 
     # Видалити нотатку
     def delete_note(self, title):
-
         note = self.find_note(title)
-
         if note:
-
             self.notes.remove(note)
-
             return True
-
         return False

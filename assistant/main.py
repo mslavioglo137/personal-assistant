@@ -15,6 +15,7 @@ from assistant.handlers import (
     add_contact,
     change_contact,
     show_notes,
+    edit_note,
     show_phone,
     show_all,
     add_birthday,
@@ -64,7 +65,7 @@ add-note [title] [content]
 show-notes
 find-note [title]
 delete-note [title]
-
+edit-note [title] [new_content]
 close or exit
 """)
 
@@ -157,6 +158,10 @@ close or exit
         elif command == "delete-note":
 
             print(delete_note(args, notes_book))
+
+        elif command == "edit-note":
+
+            print(edit_note(args, notes_book))
 
         else:
 
