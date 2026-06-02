@@ -22,8 +22,28 @@ class Phone(Field):
 
     def __init__(self, value):
 
-        if not value.isdigit() or len(value) != 10:
-            raise ValueError("Phone number must contain 10 digits.")
+        # Якщо номер починається з "+"
+        if value.startswith("+"):
+
+            digits = value[1:]
+
+        else:
+
+            digits = value
+
+        # Перевіряємо, що після "+" залишились лише цифри
+        if not digits.isdigit():
+
+            raise ValueError(
+                "Phone number must contain only digits."
+            )
+
+        # Міжнародний номер повинен містити від 10 до 15 цифр
+        if len(digits) < 10 or len(digits) > 15:
+
+            raise ValueError(
+                "Phone number must contain from 10 to 15 digits."
+            )
 
         super().__init__(value)
 

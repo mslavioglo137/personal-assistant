@@ -33,7 +33,7 @@ def main():
     print("""
 Available commands:
 hello
-add [name] [phone]
+add [name] [+countrycode_number]
 change [name] [old_phone] [new_phone]
 phone [name]
 all
