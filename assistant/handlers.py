@@ -349,3 +349,11 @@ def find_tag(args, notes_book: NotesBook):
         str(note)
         for note in found_notes
     )
+
+# Видалити всі нотатки
+@input_error
+def clear_notes(notes_book: NotesBook):
+
+    notes_book.notes.clear()
+
+    return "All notes deleted."

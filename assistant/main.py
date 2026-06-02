@@ -25,7 +25,8 @@ from assistant.handlers import (
     delete_note,
     edit_note,
     add_tag,
-    find_tag
+    find_tag,
+    clear_notes
 )
 
 
@@ -63,6 +64,7 @@ def show_menu():
   find-note [title]
   edit-note [title] [new_content]
   delete-note [title]
+  clear-notes
 
 🏷️ TAGS
 
@@ -202,6 +204,10 @@ def main():
         elif command == "find-tag":
 
             print(find_tag(args, notes_book))
+
+        elif command == "clear-notes":
+
+            print(clear_notes(notes_book))
 
         else:
 
