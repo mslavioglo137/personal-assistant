@@ -1,3 +1,4 @@
+import shlex
 from assistant.address_book import (
     AddressBook,
     Record,
@@ -11,14 +12,15 @@ from assistant.notes import (
 
 from assistant.decorators import input_error
 
+
 # Розбір введеної користувачем команди
 def parse_input(user_input):
 
-    cmd, *args = user_input.split()
+    parts = shlex.split(user_input)
 
-    cmd = cmd.strip().lower()
+    cmd = parts[0].strip().lower()
 
-    return cmd, *args
+    return cmd, *parts[1:]
 
 
 # Додавання нового контакту або нового номера
@@ -363,3 +365,27 @@ def clear_notes(notes_book: NotesBook):
     notes_book.notes.clear()
 
     return "All notes deleted."
+
+# Додавання контакту з усіма даними
+@input_error
+def add_full_contact(args, book: AddressBook):
+
+    name, phone, email, address, birthday = args
+
+    if book.find(name):
+
+        return "Contact already exists."
+
+    record = Record(name)
+
+    record.add_phone(phone)
+
+    record.add_email(email)
+
+    record.add_address(address)
+
+    record.add_birthday(birthday)
+
+    book.add_record(record)
+
+    return "Full contact added."

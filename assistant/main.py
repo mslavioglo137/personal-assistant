@@ -1,3 +1,4 @@
+import shlex
 from assistant.address_book import AddressBook
 from assistant.notes import NotesBook
 
@@ -26,7 +27,8 @@ from assistant.handlers import (
     edit_note,
     add_tag,
     find_tag,
-    clear_notes
+    clear_notes,
+    add_full_contact
 )
 
 
@@ -39,37 +41,38 @@ def show_menu():
 
 📇 CONTACTS
 
-  add [name] [+countrycode_number]
-  change [name] [old_phone] [new_phone]
-  phone [name]
+  add-full "name" phone email "address" birthday
+  add "name" phone
+  change "name" old_phone new_phone
+  phone "name"
   all
-  find [text]
-  delete [name]
+  find text
+  delete "name"
 
 🎂 BIRTHDAYS
 
-  add-birthday [name] [DD.MM.YYYY]
-  show-birthday [name]
-  birthdays [days]
+  add-birthday "name" DD.MM.YYYY
+  show-birthday "name"
+  birthdays days
 
 📧 EXTRA INFO
 
-  add-email [name] [email]
-  add-address [name] [address]
+  add-email "name" email
+  add-address "name" "address"
 
 📝 NOTES
 
-  add-note [title] [content]
+  add-note "title" content
   show-notes
-  find-note [title]
-  edit-note [title] [new_content]
-  delete-note [title]
+  find-note "title"
+  edit-note "title" new_content
+  delete-note "title"
   clear-notes
 
 🏷️ TAGS
 
-  add-tag [title] [tag]
-  find-tag [tag]
+  add-tag "title" tag
+  find-tag tag
 
 ⚙️ OTHER
 
@@ -79,6 +82,7 @@ def show_menu():
   exit
 
 ==================================================
+
 """)
 
 
@@ -132,6 +136,9 @@ def main():
         elif command == "help":
 
             show_menu()
+        elif command == "add-full":
+
+            print(add_full_contact(args, book))
 
         elif command == "add":
 
