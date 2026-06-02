@@ -53,7 +53,7 @@ all
 
 add-birthday [name] [DD.MM.YYYY]
 show-birthday [name]
-birthdays
+birthdays [days]
 
 add-email [name] [email]
 add-address [name] [address]
@@ -125,7 +125,7 @@ close or exit
 
         elif command == "birthdays":
 
-            print(birthdays(book))
+            print(birthdays(args, book))
 
         elif command == "add-email":
 

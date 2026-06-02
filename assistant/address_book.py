@@ -197,7 +197,7 @@ class AddressBook(UserDict):
             del self.data[name]
 
     # Отримання списку найближчих днів народження
-    def get_upcoming_birthdays(self):
+    def get_upcoming_birthdays(self, days):
 
         today = datetime.today().date()
 
@@ -227,7 +227,7 @@ class AddressBook(UserDict):
             delta_days = (birthday_this_year - today).days
 
             # Перевіряємо дні народження на наступні 7 днів
-            if 0 <= delta_days <= 7:
+            if 0 <= delta_days <= days:
 
                 congratulation_date = birthday_this_year
 

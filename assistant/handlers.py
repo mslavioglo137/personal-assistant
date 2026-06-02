@@ -182,9 +182,11 @@ def show_birthday(args, book: AddressBook):
 
 # Показати найближчі дні народження
 @input_error
-def birthdays(book: AddressBook):
+def birthdays(args, book: AddressBook):
 
-    upcoming_birthdays = book.get_upcoming_birthdays()
+    days = int(args[0])
+
+    upcoming_birthdays = book.get_upcoming_birthdays(days)
 
     if not upcoming_birthdays:
         return "No upcoming birthdays."
@@ -198,6 +200,7 @@ def birthdays(book: AddressBook):
         )
 
     return "\n".join(result)
+
 # Додавання email
 @input_error
 def add_email(args, book: AddressBook):
